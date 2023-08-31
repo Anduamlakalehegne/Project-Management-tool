@@ -1,0 +1,101 @@
+.dashboard {
+  position: absolute;
+  margin-left: 240px;
+  top: 70px;
+  width: calc(100% - 240px);
+  height: 100%;
+  z-index: -1;
+  transition: all 0.5s;
+}
+
+/* ----------------- all cards ----------------- */
+.dashboardContents {
+  display: grid;
+  grid-template-columns: 25% 25% 25%;
+  justify-content: center;
+  column-gap: 7%;
+  row-gap: 6%;
+  margin-top: 40px;
+}
+
+/* --------------- card 1 ---------------- */
+.card {
+  color: #006666;
+  width: 95%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px 0px 0px 10px;
+  text-align: center;
+  padding: 1px 15px;
+  border-right: 5px solid #006666;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  display: grid;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.8s;
+  z-index: -1;
+  margin-bottom: 50px;
+  height: 75%;
+}
+
+.card:hover {
+  color: #e4e4e4;
+  background-color: black;
+  transform: scale(1.08);
+  z-index: -1;
+}
+.card p {
+  font-size: 19px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.card label {
+  font-size: 35px;
+}
+
+/* ---------------responsiveness--------------- */
+
+@media screen and (max-width: 870px) {
+  .dashboardContents {
+    display: grid;
+    grid-template-columns: 35% 35%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 120px;
+    gap: 6%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboardContents {
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 120px;
+    gap: 1px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main_content {
+    position: absolute;
+    width: calc(100%);
+    left: 0px;
+    opacity: var(--black2);
+    color: var(--black1);
+    top: 75px;
+    background-color: rgb(242, 242, 242);
+    z-index: -2;
+    min-height: calc(100vh -75px);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .dashboard_contents {
+    margin-left: 3%;
+  }
+}

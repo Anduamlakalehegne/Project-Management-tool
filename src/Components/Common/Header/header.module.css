@@ -1,0 +1,78 @@
+.container {
+  background-color: #004766;
+  transition: all 0.5s;
+  z-index: -100;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 32% 64%;
+  justify-content: space-around;
+  /* height: 7px; */
+  align-items: center;
+}
+
+.header ul {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  list-style: none;
+}
+
+.header li {
+  padding: 8px 20px;
+  color: #d9d9d9;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.header li:hover {
+  color: #003488;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.header .login {
+  background-color: #ffffff;
+  color: #004766;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 50px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 5%;
+}
+
+.header .login:hover {
+  background-color: #004766;
+  color: #ffffff;
+}
+
+.header img {
+  height: 70px;
+  width: 100%;
+  /* margin-top: 5px; */
+  border-radius: 5px;
+}
+.popImg {
+  width: 144px;
+  height: 144px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+.User {
+  font-size: 17px;
+  font-weight: 550;
+  margin: 0px 10px;
+}
+.icon {
+  font-size: 20px;
+  padding-right: 10px;
+  /* margin-top: 5px; */
+  /* margin-left: 10px; */
+}
