@@ -66,7 +66,7 @@ const Projects = () => {
             field: "Assign",
             headerClassName: "column-header",
             width: 150,
-            renderCell: (params) => renderAssignButton(params, params.row.id),
+            renderCell: (params) => renderAssignButton(params, params.row.projectId),
         },
 
         {
@@ -236,18 +236,18 @@ const Projects = () => {
         //     headerClassName: "column-header",
         //     cellClassName: "column-cell",
         // },
-        // {
-        //     field: "project",
-        //     headerName: "End Date",
-        //     width: 180,
-        //     headerClassName: "column-header",
-        //     cellClassName: "column-cell",
-        // },
+        {
+            field: "project",
+            headerName: "End Date",
+            width: 180,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
         {
             field: "Assign",
             headerClassName: "column-header",
             width: 150,
-            renderCell: (params) => renderAssignProjectButton(params, params.row.id),
+            renderCell: (params) => renderAssignProjectButton(params, params.row.employeeId),
         },
 
         // {
@@ -264,7 +264,7 @@ const Projects = () => {
         // },
     ]
 
-    const renderAssignProjectButton = (params, id,) => {
+    const renderAssignProjectButton = (params, employeeId,) => {
         return (
             <strong>
                 <Button
@@ -272,7 +272,8 @@ const Projects = () => {
                     color="success"
                     size="small"
                     onClick={() => {
-                        assignProject(id)
+                        assignProject(employeeId)
+                        // assignEmployee(employeeId)
                         closePopup5()
                     }}>
                     Select
@@ -314,32 +315,82 @@ const Projects = () => {
 
 
 
-    const assignProject = (employid) => {
+    const assignProject = async (employid) => {
 
-        Axios.put("http://localhost:3006/update", { projectTd: projectTd, employid: employid })
-            .then(
-                (response) => {
-                    if (response.data.message) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: "Assigned Sucessfully",
-                            confirmButtonColor: '#00cc44',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ok!',
-                            showCloseButton: true,
-                        })
-                    }
-                    else {
-                        Swal.fire({
-                            title: "Assigned Sucessfully",
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 2000,
-                        })
-                    }
+        try {
+            const headers = {
+                'Content-Type': 'application/json',
+            };
+            const data = {
+                projectTd,
+                employid,
+            };
+            const data2 = {
+                employid,
+            };
 
-                }
-            );
+            const response2 = await axios.put(
+                'http://localhost:3006/update/user',
+                data2,
+            )
+
+            const response = await axios.put(
+                'http://localhost:3006/update',
+                data,
+            )
+            if (response.status === 200) {
+                const MySwal = withReactContent(Swal);
+                MySwal.fire({
+                    html: (
+                        <>
+                            <p>
+                                <span style={{ fontSize: '19px', color: '#ff6b0b' }}> Assigned Sucessfully</span>
+                            </p>
+                        </>
+                    ),
+                    icon: 'success',
+                    denyButtonText: "Close",
+                    allowOutsideClick: false,
+                    showCloseButton: true,
+                })
+            }
+            else {
+                const MySwal = withReactContent(Swal);
+                MySwal.fire({
+                    html: (
+                        <>
+                            <h5 style={{ fontSize: '19px', textAlign: 'center', color: 'red' }}>Faild to Assigne</h5>
+                        </>
+                    ),
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    icon: 'error',
+                    denyButtonText: "Close",
+                    allowOutsideClick: false,
+                    showCloseButton: true,
+                })
+
+            }
+
+        } catch (error) {
+            console.log(error + "error");
+            Swal.fire({
+                title: "Something Went Wrong?",
+                text: `net::ERR_INTERNET_DISCONNECTED `,
+                icon: "warning",
+                dangerMode: true,
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                showClass: {
+                    popup: 'animate__animated animate__shakeX'
+                },
+                allowOutsideClick: false,
+                showCloseButton: true,
+            })
+        }
+
+
     }
 
     const [projectName, setMovieName] = useState("");
@@ -362,12 +413,13 @@ const Projects = () => {
     const [dataSource2, setDataSource2] = useState([])
 
     const loddata2 = async () => {
-        const response = await axios.get("http://localhost:3006/api/employee")
+        const response = await axios.get("http://localhost:3006/api/employee/assign")
         setDataSource2(response.data);
     }
     useEffect(() => {
         loddata2()
     }, []);
+
     const addProjects = () => {
 
         if (!projectName || !projectId || !startDate || !endDate) {
@@ -503,13 +555,13 @@ const Projects = () => {
                                                 <input type="text" name='movie_Review' placeholder='Please enter project id...' onChange={(e) => { setReview(e.target.value) }}></input>
 
                                                 <label >PROJECT START DATE</label>
-                                                <input type="date" placeholder='Please enter project start date' onChange={(e) => setDescription(e.target.value)}></input>
+                                                <input type="date" placeholder='Please enter project start date' onChange={(e) => setStartDate(e.target.value)}></input>
 
                                                 <label>PROJECT END DATE</label>
                                                 <input type="date" placeholder='Please enter project end date' onChange={(e) => setEndDate(e.target.value)}></input>
 
                                                 <label >PROJECT DESCRIPTION</label>
-                                                <textarea type="text" placeholder='Please enter project start date' onChange={(e) => setStartDate(e.target.value)}></textarea>
+                                                <textarea type="text" placeholder='Please enter project start date' onChange={(e) => setDescription(e.target.value)}></textarea>
                                             </div>
                                             <div className={styles.addProjectbutton}>
                                                 <button onClick={() => {

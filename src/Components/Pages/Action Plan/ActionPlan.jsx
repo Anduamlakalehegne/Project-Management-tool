@@ -4,7 +4,7 @@ import { FaHome } from 'react-icons/fa';
 import { AiFillCar } from "react-icons/ai";
 import { FaRoute } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, } from 'react';
 import Swal from 'sweetalert2'
 import swal from "sweetalert";
 import withReactContent from 'sweetalert2-react-content'
@@ -12,7 +12,7 @@ import 'animate.css';
 import Axios from "axios"
 import axios from 'axios';
 import { Pagination } from 'antd';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import SideBar from '../../Common/SideBar/SideBar';
 import Button from "@mui/material/Button";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
@@ -25,6 +25,21 @@ const ActionPlan = () => {
             field: "id",
             headerName: "ID",
             width: 60,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
+
+        {
+            field: "projectId",
+            headerName: "Project Id",
+            width: 200,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
+        {
+            field: "employeeId",
+            headerName: "Employee Id",
+            width: 180,
             headerClassName: "column-header",
             cellClassName: "column-cell",
         },
@@ -42,39 +57,40 @@ const ActionPlan = () => {
             headerClassName: "column-header",
             cellClassName: "column-cell",
         },
-        {
-            field: "documentationStartDate",
-            headerName: "Documentation Start Date",
-            width: 200,
-            headerClassName: "column-header",
-            cellClassName: "column-cell",
-        },
-        {
-            field: "documentationEndDate",
-            headerName: "Documentation End Date",
-            width: 200,
-            headerClassName: "column-header",
-            cellClassName: "column-cell",
-        },
-        {
-            field: "databasStartDate",
-            headerName: "Database Start Date",
-            width: 170,
-            headerClassName: "column-header",
-            cellClassName: "column-cell",
-        },
-        {
-            field: "databasEndDate",
-            headerName: "Database End Date",
-            width: 170,
-            headerClassName: "column-header",
-            cellClassName: "column-cell",
-        },
+
+        // {
+        //     field: "documentationStartDate",
+        //     headerName: "Documentation Start Date",
+        //     width: 200,
+        //     headerClassName: "column-header",
+        //     cellClassName: "column-cell",
+        // },
+        // {
+        //     field: "documentationEndDate",
+        //     headerName: "Documentation End Date",
+        //     width: 200,
+        //     headerClassName: "column-header",
+        //     cellClassName: "column-cell",
+        // },
+        // {
+        //     field: "databasStartDate",
+        //     headerName: "Database Start Date",
+        //     width: 170,
+        //     headerClassName: "column-header",
+        //     cellClassName: "column-cell",
+        // },
+        // {
+        //     field: "databasEndDate",
+        //     headerName: "Database End Date",
+        //     width: 170,
+        //     headerClassName: "column-header",
+        //     cellClassName: "column-cell",
+        // },
         {
             field: "Approval",
             headerClassName: "column-header",
             width: 150,
-            renderCell: (params) => renderApprovalButton(params, params.row.id),
+            renderCell: (params) => renderApprovalButton(params, params.row.employeeId, params.row.projectId),
         },
 
         {
@@ -84,14 +100,20 @@ const ActionPlan = () => {
             renderCell: (params) => renderDetialButton(params, params.row.id),
         },
         {
-            field: "Delete",
+            field: "Status",
             headerClassName: "column-header",
             width: 150,
-            renderCell: (params) => renderDeleteButton(params, params.row.id,),
+            renderCell: (params) => renderStatusButton(params, params.row.approval),
+        },
+        {
+            field: "Progress",
+            headerClassName: "column-header",
+            width: 250,
+            renderCell: (params) => renderProgressButton(params, params.row.id, params.row.projectId,),
         },
     ]
 
-    const renderApprovalButton = (params, id,) => {
+    const renderApprovalButton = (params, employeeId, projectId) => {
         return (
             <strong>
                 <Button
@@ -99,8 +121,9 @@ const ActionPlan = () => {
                     color="primary"
                     size="small"
                     onClick={() => {
-                        // handleClickopen()
-                        // setProjectId(id)
+                        handleClickopen2()
+                        setEmployid(employeeId)
+                        setProjectId(projectId)
                     }}>
                     Approval
                 </Button>
@@ -126,18 +149,65 @@ const ActionPlan = () => {
             </strong>
         );
     };
-    const renderDeleteButton = (params, id) => {
+
+
+    const navigate = useNavigate();
+    const renderProgressButton = (params, id, projectId) => {
         return (
             <strong>
                 <Button
                     variant="contained"
-                    color="error"
+                    color="primary"
                     size="small"
-                    onClick={() => {
-                        handleClickDelete(id)
-                    }}>
-                    Delete
+                    onClick={() => { navigate(`/TrackProgress/${id}/${projectId}`) }}>
+                    Track Progress
                 </Button>
+            </strong >
+        );
+    };
+
+    const renderStatusButton = (params, approval) => {
+        return (
+            <strong>
+                {approval === "Approved" ?
+                    <Button
+                        style={{ marginLeft: '10px' }}
+                        variant="contained"
+                        color="success"
+                        size="small"
+                        onClick={() => {
+                            // handleClickopen()
+                            // setProjectId(id)
+                        }}>
+                        Approved
+                    </Button> : ""
+                }
+                {approval === "Declined" ?
+                    <Button
+                        style={{ marginLeft: '10px' }}
+                        variant="contained"
+                        color="error"
+                        size="small"
+                        onClick={() => {
+                            // handleClickopen()
+                            // setProjectId(id)
+                        }}>
+                        Declined
+                    </Button> : ""
+                }
+                {approval === "Pending" ?
+                    <Button
+                        style={{ marginLeft: '10px' }}
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        onClick={() => {
+                            // handleClickopen()
+                            // setProjectId(id)
+                        }}>
+                        Pending
+                    </Button> : ""
+                }
             </strong>
         );
     };
@@ -191,7 +261,7 @@ const ActionPlan = () => {
     const [deployStartDate, setDeployStartDate] = useState("");
     const [deployEndDate, setDeployEndDate] = useState("");
 
-    const [totalPages, setTotalPage] = useState(1);
+    const [projectId, setProjectId] = useState(1);
 
 
 
@@ -267,41 +337,126 @@ const ActionPlan = () => {
     }
     // const [approval, setApproval] = useState("");
     const [employid, setEmployid] = useState("");
-    console.log(employid)
-    // console.log(approval) 
-    const makeApproval = (approval) => {
-        Axios.put("http://localhost:3006/actionplan/update", { employid, approval })
-            .then(
-                (response) => {
-                    if (response.data.message) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: `${approval} Sucessfully`,
-                            confirmButtonColor: '#00cc44',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ok!',
-                            showCloseButton: true,
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                setPop2(false)
-                            }
-                        })
-                    }
-                    else {
-                        Swal.fire({
-                            title: `${approval} Sucessfully`,
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 2000,
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                setPop2(false)
-                            }
-                        })
-                    }
 
-                }
-            );
+
+    const makeApproval = async (approval) => {
+
+        if (approval === "Approved") {
+
+            const data1 = {
+                projectId,
+            };
+            const response = await axios.post(
+                'http://localhost:3006/api/projectProgress/default',
+                data1,
+            )
+        }
+
+        try {
+            const headers = {
+                'Content-Type': 'application/json',
+            };
+            const data = {
+                projectId,
+                approval,
+
+            };
+            const config = {
+                headers,
+                mode: 'no-cors',
+            };
+            const response = await axios.put(
+                'http://localhost:3006/actionplan/update',
+                data,
+                config,
+            )
+
+            if (response.status === 200) {
+                const MySwal = withReactContent(Swal);
+                MySwal.fire({
+                    html: (
+                        <>
+                            <p>
+                                <span style={{ fontSize: '19px', color: '#ff6b0b' }}> {approval} Sucessfully</span>
+                            </p>
+                        </>
+                    ),
+                    icon: 'success',
+                    denyButtonText: "Close",
+                    allowOutsideClick: false,
+                    showCloseButton: true,
+                })
+                loddata()
+                setPop2(false)
+            }
+            else {
+                const MySwal = withReactContent(Swal);
+                MySwal.fire({
+                    html: (
+                        <>
+                            <h5 style={{ fontSize: '19px', textAlign: 'center', color: 'red' }}>Faild to Assigne</h5>
+                        </>
+                    ),
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    icon: 'error',
+                    denyButtonText: "Close",
+                    allowOutsideClick: false,
+                    showCloseButton: true,
+                })
+                setPop2(false)
+
+            }
+
+        } catch (error) {
+            console.log(error + "error");
+            Swal.fire({
+                title: "Something Went Wrong?",
+                text: `net::ERR_INTERNET_DISCONNECTED `,
+                icon: "warning",
+                dangerMode: true,
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                showClass: {
+                    popup: 'animate__animated animate__shakeX'
+                },
+                allowOutsideClick: false,
+                showCloseButton: true,
+            })
+        }
+
+        // .then(
+        //     (response) => {
+        //         if (response.data.message) {
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: `${approval} Sucessfully`,
+        //                 confirmButtonColor: '#00cc44',
+        //                 cancelButtonColor: '#d33',
+        //                 confirmButtonText: 'Ok!',
+        //                 showCloseButton: true,
+        //             }).then((result) => {
+        //                 if (result.isConfirmed) {
+        //                     setPop2(false)
+        //                 }
+        //             })
+        //         }
+        //         else {
+        //             Swal.fire({
+        //                 title: `${approval} Sucessfullyyy`,
+        //                 icon: 'success',
+        //                 showConfirmButton: false,
+        //                 timer: 2000,
+        //             }).then((result) => {
+        //                 if (result.isConfirmed) {
+        //                     setPop2(false)
+        //                 }
+        //             })
+        //         }
+
+        //     }
+        // );
 
     }
 

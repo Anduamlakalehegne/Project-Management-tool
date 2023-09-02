@@ -236,15 +236,6 @@ const Employees_Registration = () => {
     const [dataSource, setDataSource] = useState([])
     const [totalPages, setTotalPage] = useState(1);
 
-    const [page, setCurentPage] = useState(1);
-    const [postPerPage, setpostPerPage] = useState(5);
-    const indexOfLastPage = page * postPerPage;
-    const indexOfFirstPage = indexOfLastPage - postPerPage;
-    const currentPage = dataSource.slice(indexOfFirstPage, indexOfLastPage);
-
-    const onShowSizeChange = (current, pageSize) => {
-        setpostPerPage(pageSize);
-    }
 
     const loddata = async () => {
         const response = await axios.get("http://localhost:3006/api/employee")
@@ -345,12 +336,12 @@ const Employees_Registration = () => {
 
                     <div>
                         <p className={styles.OTP_RequestTitle}>Employee List</p>
-                        <div style={{ width: "98%", margin: 'auto', marginTop: '10px', marginBottom: '100px', textAlign: 'center', }}>
+                        <div style={{ height: '70vh', width: "98%", margin: 'auto', marginTop: '10px', marginBottom: '100px', textAlign: 'center', }}>
+
                             <div className={styles.buttonClass} >
-                                {/* <Link to='/registration' style={{ textDecoration: 'none' }}> */}
                                 <button onClick={() => handleClickopen1()}><AiOutlinePlus style={{ fontSize: '18px', color: 'white' }}></AiOutlinePlus>Add Employee</button>
-                                {/* </Link> */}
                             </div>
+
                             <DataGrid
                                 sx={{
                                     m: 2,

@@ -24,8 +24,9 @@ const Dashboard = () => {
 
     const user = JSON.parse(localStorage.getItem("user2"));
     const id = user.data[0].id;
+    const employeeId = user.data[0].employeeId;
     const role = user.data[0].role;
-    console.log(role);
+    // console.log(role);
 
 
     const [dataSource, setDataSource] = useState([])
@@ -57,7 +58,7 @@ const Dashboard = () => {
 
     const [dataSource4, setDataSource4] = useState([])
     const loddata4 = async () => {
-        const response = await axios.get(`http://localhost:3006/api/employee/project/${id}`);
+        const response = await axios.get(`http://localhost:3006/api/employee/project/${employeeId}`);
         setDataSource4(response.data);
     }
     useEffect(() => {
@@ -145,13 +146,23 @@ const Dashboard = () => {
 
                             <Link to="/ProgressReport" style={{ textDecoration: "none", }}>
                                 <div className={styles.card}>
-                                    <p>Progress Report </p>
+                                    <p>Action Plan </p>
                                     <div style={{ display: "flex", justifyContent: "center", gap: "5%", }}>
                                         <label><BsFillFileZipFill></BsFillFileZipFill></label>
                                         <label style={{ display: "flex", fontSize: "21px", marginTop: "8px", }}>{dataSource5.length}</label>
                                     </div>
                                 </div>
                             </Link>
+
+                            {/* <Link to="/SendProgress" style={{ textDecoration: "none", }}>
+                                <div className={styles.card}>
+                                    <p>Progress Report </p>
+                                    <div style={{ display: "flex", justifyContent: "center", gap: "5%", }}>
+                                        <label><BsFillFileZipFill></BsFillFileZipFill></label>
+                                        <label style={{ display: "flex", fontSize: "21px", marginTop: "8px", }}>{dataSource5.length}</label>
+                                    </div>
+                                </div>
+                            </Link> */}
 
                         </>
                         : ""}

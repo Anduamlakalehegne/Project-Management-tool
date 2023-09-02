@@ -1,0 +1,93 @@
+.main {
+  position: absolute;
+  margin-left: 240px;
+  top: 70px;
+  width: calc(100% - 240px);
+  height: 100%;
+  /* z-index: -1; */
+  transition: all 0.5s;
+}
+
+.addProject {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.addProject label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.addProject input {
+  position: relative;
+  height: 38px;
+  width: 100%;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 6px;
+  padding: 0 15px;
+  margin-right: 50px;
+}
+
+.actions2 {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 40% 50%;
+  justify-content: center;
+  /* gap: 2%; */
+}
+.actions2 p {
+  color: #e24f00;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 10px;
+  padding-top: 15px;
+}
+
+.addProject select {
+  /* position: relative; */
+  height: 38px;
+  width: 100%;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 6px;
+  padding: 10px 10px;
+  margin-right: 50px;
+  margin-top: 5px;
+}
+
+.projectTitle {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0px;
+  margin-bottom: 30px;
+}
+
+.addProjectbutton {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.addProjectbutton button {
+  background-color: #e24f00;
+  color: #ffffff;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  width: 19%;
+  height: 40px;
+  font-size: 18px;
+  margin-bottom: 30px;
+}

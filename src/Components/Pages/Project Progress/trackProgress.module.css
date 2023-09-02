@@ -8,6 +8,100 @@
   transition: all 0.5s;
 }
 
+.addProject {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 150px;
+}
+
+.addProject label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.addProject input {
+  position: relative;
+  height: 38px;
+  width: 100%;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 6px;
+  padding: 0 15px;
+  margin-right: 50px;
+}
+
+.actions2 {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 40% 45%;
+  justify-content: center;
+  gap: 2%;
+}
+.actions2 p {
+  color: #e24f00;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 10px;
+  padding-top: 15px;
+}
+
+.addProject select {
+  position: relative;
+  height: 38px;
+  width: 100%;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 6px;
+  padding: 0 15px;
+  margin-right: 50px;
+}
+
+.projectTitle {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.page {
+  /* padding: 10px; */
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0px;
+  margin-bottom: 30px;
+}
+
+.addProjectbutton {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 210px;
+}
+
+.addProjectbutton button {
+  background-color: #e24f00;
+  color: #ffffff;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  width: 19%;
+  height: 40px;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.main {
+  position: absolute;
+  margin-left: 240px;
+  top: 70px;
+  width: calc(100% - 240px);
+  height: 100%;
+  /* z-index: -1; */
+  transition: all 0.5s;
+}
+
 .OTP_RequestTitle {
   font-size: 30px;
   font-weight: 600;
@@ -145,23 +239,23 @@
 }
 
 .addProject {
-  display: grid;
-  grid-template-columns: 23% 23% 23%;
-  /* gap: 10%; */
-  column-gap: 8%;
-  justify-content: center;
-  width: 100%;
+  display: grid; 
+  grid-template-columns: 22% 22% 22%;  
+  column-gap: 10%; 
+  justify-content: center; 
+  width: 90%; 
+  padding-bottom: 150px; 
 }
 .actions {
-  margin-top: 20px;
-  display: grid;
+  margin-top: 20px; 
+  display: grid; 
   /* grid-template-columns: 15% 18% 18%; */
-  justify-content: center;
+  justify-content: center; 
   /* gap: 2%; */
 }
-.actions p {
-  color: #e24f00;
-  font-size: 17px;
+.actions p { 
+  color: #e24f00; 
+  font-size: 17px; 
   font-weight: 600;
   margin-top: 10px;
   padding-top: 15px;
@@ -180,6 +274,7 @@
   border-radius: 6px;
   padding: 0 15px;
   margin-right: 50px;
+  margin: 7px 0px;
 }
 
 .selectApproval {

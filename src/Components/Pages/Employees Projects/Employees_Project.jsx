@@ -6,14 +6,130 @@ import Swal from 'sweetalert2'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Pagination } from 'antd';
 import axios from 'axios';
+import Button from "@mui/material/Button";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { AiOutlinePlus } from "react-icons/ai";
 import SideBar from '../../Common/SideBar/SideBar';
 
 const Employees_Project = () => {
 
+    const columns = [
+        {
+            field: "id",
+            headerName: "ID",
+            width: 100,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
+        {
+            field: "projectName",
+            headerName: "Project Name",
+            width: 200,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
+        {
+            field: "projectId",
+            headerName: "Project Id",
+            width: 200,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
+        {
+            field: "startDate",
+            headerName: "Start Date",
+            width: 200,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
+        {
+            field: "endDate",
+            headerName: "End Date",
+            width: 180,
+            headerClassName: "column-header",
+            cellClassName: "column-cell",
+        },
+        // {
+        //     field: "description",
+        //     headerName: "Description",
+        //     width: 370,
+        //     headerClassName: "column-header",
+        //     cellClassName: "column-cell",
+        // },
+        {
+            field: "Detail",
+            headerClassName: "column-header",
+            width: 150,
+            renderCell: (params) => renderDetialButton(params, params.row.id),
+        },
+
+        {
+            field: "Action Plan",
+            headerClassName: "column-header",
+            width: 150,
+            renderCell: (params) => renderActionPlanButton(params, params.row.projectId, params.row.startDate, params.row.endDate,),
+        },
+        // {
+        //     field: "Delete",
+        //     headerClassName: "column-header",
+        //     width: 150,
+        //     renderCell: (params) => renderDeleteButton(params, params.row.id,),
+        // },
+    ]
+
+    const renderDetialButton = (params, id,) => {
+        return (
+            <strong>
+                <Button
+                    variant="contained"
+                    color="success"
+                    size="small"
+                    onClick={() => {
+                        handleClickopen()
+                        setProjectId(id)
+                    }}>
+                    Detail
+                </Button>
+            </strong>
+        );
+    };
+    const navigate = useNavigate();
+
+    const renderActionPlanButton = (params, projectId, startDate, endDate) => {
+        return (
+            <strong>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    onClick={() => { navigate(`/actionplan/${projectId}/${startDate}/${endDate}`) }}
+                >
+                    Set
+                </Button>
+            </strong>
+        );
+    };
+    // const renderDeleteButton = (params, id) => {
+    //     return (
+    //         <strong>
+    //             <Button
+    //                 variant="contained"
+    //                 color="error"
+    //                 size="small"
+    //                 onClick={() => {
+    //                     handleClickDelete(id)
+    //                 }}>
+    //                 Delete
+    //             </Button>
+    //         </strong>
+    //     );
+    // };
+
+
     // const user =  localStorage.getItem("user2");
     // const user = localStorage.getItem("user2");
     const user = JSON.parse(localStorage.getItem("user2"));
-    const id = user.data[0].id;
+    const id = user.data[0].employeeId;
     console.log(id)
 
 
@@ -45,6 +161,12 @@ const Employees_Project = () => {
         setWidth(data);
     };
 
+    const formattedData = dataSource.map((item, index) => ({
+        // id: index + 1, // Assign a unique id to each row
+        ...item,
+    }));
+
+
 
 
     return (
@@ -54,6 +176,26 @@ const Employees_Project = () => {
             <SideBar path="/Eproject" title="Manager Dashboard" sendDataToParent={handleDataFromChild} />
 
             <div className={styles.main} style={{ marginLeft: `${width}`, width: `calc(100% - ${width})` }}>
+
+                <div>
+                    <p className={styles.OTP_RequestTitle}>Projects</p>
+
+                    <div style={{ height: "70vh", width: "98%", margin: 'auto', marginTop: '10px', marginBottom: '100px', textAlign: 'center' }}>
+
+                        <DataGrid
+                            sx={{
+                                m: 2,
+                                border: 1,
+                                borderColor: 'primary.light', '& .MuiDataGrid-cell:hover': { color: 'primary.main', },
+                            }}
+                            checkboxSelection
+                            rows={formattedData}
+                            columns={columns}
+                            components={{ Toolbar: GridToolbar }}
+                        />
+                    </div>
+                </div>
+
 
                 <div className={styles.outer_table} id='myTable'>
 

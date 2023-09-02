@@ -9,7 +9,7 @@ import 'animate.css';
 import Axios from "axios"
 import axios from 'axios';
 import { Pagination } from 'antd';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import SideBar from '../../Common/SideBar/SideBar';
 import Button from "@mui/material/Button";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
@@ -71,12 +71,27 @@ const ProgressReport = () => {
             renderCell: (params) => renderDetialButton(params, params.row.id),
         },
         {
-            field: "Delete",
+            field: "Progress",
             headerClassName: "column-header",
-            width: 150,
-            renderCell: (params) => renderDeleteButton(params, params.row.id,),
+            width: 200,
+            renderCell: (params) => renderProgressButton(params, params.row.projectId),
         },
     ]
+
+    const navigate = useNavigate();
+    const renderProgressButton = (params, id) => {
+        return (
+            <strong>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    onClick={() => { navigate(`/SendProgress/${id}`) }}>
+                    Send Progress
+                </Button>
+            </strong >
+        );
+    };
 
     const renderApprovalButton = (params, approval) => {
         return (
@@ -138,7 +153,7 @@ const ProgressReport = () => {
         return (
             <strong>
                 <Button
-                     variant="contained"
+                    variant="contained"
                     color="primary"
                     size="small"
                 // onClick={() => { navigate(`/Detail_EM/${id}/${currentPosition}`) }}
@@ -205,7 +220,7 @@ const ProgressReport = () => {
 
             <div className={styles.main} style={{ marginLeft: `${width}`, width: `calc(100% - ${width})` }}>
                 <div>
-                    <p className={styles.OTP_RequestTitle}>Progress Report</p>
+                    <p className={styles.OTP_RequestTitle}>Action Plan</p>
                     <div style={{ height: "70vh", width: "98%", margin: 'auto', marginTop: '10px', marginBottom: '100px', textAlign: 'center' }}>
                         <div className={styles.buttonClass} >
                             {/* <Link to='/registration' style={{ textDecoration: 'none' }}> */}

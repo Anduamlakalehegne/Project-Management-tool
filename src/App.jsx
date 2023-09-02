@@ -8,6 +8,8 @@ import Employees_Project from './Components/Pages/Employees Projects/Employees_P
 import SetActionPlan from './Components/Pages/Action Plan/SetActionPlan';
 import ProgressReport from './Components/Pages/Action Plan/ProgressReport';
 import ActionPlan from './Components/Pages/Action Plan/ActionPlan';
+import SendProgress from './Components/Pages/Project Progress/SendProgress';
+import TrackProgress from './Components/Pages/Project Progress/TrackProgress';
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
             <Route path="/actionplan/:projectId/:projectStartDate/:projectEndDate" element={<SetActionPlan />}></Route>
             <Route path="/ProgressReport" element={<ProgressReport />}></Route>
             <Route path="/ActionPlan" element={<ActionPlan />}></Route>
+            <Route path="/SendProgress/:projectId" element={<SendProgress />}></Route>
+            <Route path="/TrackProgress/:id/:projectId" element={<TrackProgress />}></Route>
             {/* 
             <Route path="/SetActionPlan" element={<SetActionPlan />}></Route>
             <Route path="/employeeProfile" element={<EmployeeProfile />}></Route>

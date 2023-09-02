@@ -38,7 +38,11 @@ function SideBar(props) {
     return 'red'
   }
 
-  console.log(path)
+  // console.log(path)
+
+  const user = JSON.parse(localStorage.getItem("user2"));
+  const id = user.data[0].id;
+  const role = user.data[0].role;
 
   return (
     <>
@@ -62,23 +66,41 @@ function SideBar(props) {
             </li>
           </Link>
 
-          <Link to="/Employees_Registration" style={{ textDecoration: "none" }} >
-            <li style={path == "/employee" ? { backgroundColor: 'white', color: '#212b36', textDecoration: 'none', borderRadius: '5px 0px 0px 5px' } : { textDecoration: 'none' }}>
-              <span>
-                <FaUsers></FaUsers>
-              </span>
-              <p style={{ display: isOpen ? "none" : "block", transition: '0.5s' }}>Employees</p>
-            </li>
-          </Link>
+          {role === 'admin' ?
+            <>
+              <Link to="/Employees_Registration" style={{ textDecoration: "none" }} >
+                <li style={path == "/employee" ? { backgroundColor: 'white', color: '#212b36', textDecoration: 'none', borderRadius: '5px 0px 0px 5px' } : { textDecoration: 'none' }}>
+                  <span>
+                    <FaUsers></FaUsers>
+                  </span>
+                  <p style={{ display: isOpen ? "none" : "block", transition: '0.5s' }}>Employees</p>
+                </li>
+              </Link>
 
-          <Link to="/project" style={{ textDecoration: "none" }} >
-            <li style={path == "/project" ? { backgroundColor: 'white', color: '#212b36', textDecoration: 'none', borderRadius: '5px 0px 0px 5px' } : { textDecoration: 'none' }}>
-              <span>
-                <BsFillFileZipFill></BsFillFileZipFill>
-              </span>
-              <p style={{ display: isOpen ? "none" : "block", transition: '0.5s' }}>Project</p>
-            </li>
-          </Link>
+              <Link to="/project" style={{ textDecoration: "none" }} >
+                <li style={path == "/project" ? { backgroundColor: 'white', color: '#212b36', textDecoration: 'none', borderRadius: '5px 0px 0px 5px' } : { textDecoration: 'none' }}>
+                  <span>
+                    <BsFillFileZipFill></BsFillFileZipFill>
+                  </span>
+                  <p style={{ display: isOpen ? "none" : "block", transition: '0.5s' }}>Project</p>
+                </li>
+              </Link>
+            </>
+            : ''}
+
+          {role === 'user' ?
+
+            <Link to="/Eproject" style={{ textDecoration: "none" }} >
+              <li style={path == "/project" ? { backgroundColor: 'white', color: '#212b36', textDecoration: 'none', borderRadius: '5px 0px 0px 5px' } : { textDecoration: 'none' }}>
+                <span>
+                  <BsFillFileZipFill></BsFillFileZipFill>
+                </span>
+                <p style={{ display: isOpen ? "none" : "block", transition: '0.5s' }}>Project</p>
+              </li>
+            </Link>
+
+            : ''}
+
 
           <li>
             <span>

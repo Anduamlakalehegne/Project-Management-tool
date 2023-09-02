@@ -61,7 +61,7 @@ export default function SetActionPlan() {
     const loddata = async () => {
         const response = await axios.get("http://localhost:3006/api/actionplan")
         setDataSource(response.data);
-       
+
     }
     useEffect(() => {
         loddata()
@@ -215,63 +215,7 @@ export default function SetActionPlan() {
                         <button onClick={() => addProjects()}>Send</button>
                     </div>
 
-                    <div className={styles.outer_table} id='myTable'>
 
-                        <div className={styles.search}>
-                            <p title='search'>
-                                <BsSearch className={styles.icn} size="1.5rem" color='rgb(63, 63, 63)'></BsSearch>
-                                <input type="text" id="myInput" placeholder="Search"></input>
-                                <button>Search</button>
-                            </p>
-                        </div>
-                        <p>Action Plan</p>
-
-                        <table className={styles.grid_table} id="myTable">
-
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Project_Start_Date</th>
-                                    <th>Project_End_Date</th>
-                                    <th>Project Id</th>
-                                    <th>Employee Id</th>
-                                    <th>Approval</th>
-                                    <th>Detail</th>
-                                    <th>Send_Progress</th>
-
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {
-                                    currentPage.map(item => {
-                                        return <tr className='active_row'>
-                                            <td>{item.id}</td>
-                                            <td>{item.projectStartDate}</td>
-                                            <td>{item.projectEndDate}</td>
-                                            <td>{item.projectId}</td>
-                                            <td>{item.employeeId}</td>
-                                            <td><h5 className={getColor(item.approval)}>{item.approval}</h5></td>
-                                            <td><button>Detail</button></td>
-                                            <td><Link to="/SendProgress"><button>Progress</button></Link></td>
-
-                                        </tr>
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className={styles.page}>
-                        <Pagination
-                            onChange={(page) => setCurentPage(page)}
-                            pageSize={postPerPage}
-                            current={page}
-                            total={totalPages}
-                            showQuickJumper
-                            showSizeChanger
-                            onShowSizeChange={onShowSizeChange}
-                        />
-                    </div>
                 </>
 
             </div>
