@@ -70,26 +70,26 @@
 }
 .addProject input {
   position: relative;
-  height: 38px;
-  width: 100%;
+  height: 33px;
+  /* width: 100%; */
   outline: none;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(182, 182, 182);
   border-radius: 6px;
   padding: 0 15px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 
 .addProject textarea {
   position: relative;
   height: 70px;
-  width: 100%;
+  /* width: 100%; */
   outline: none;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(182, 182, 182);
   border-radius: 6px;
   padding: 10px 15px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 
 .page {
@@ -182,17 +182,6 @@
 .addProject label {
   margin-top: 15px;
   margin-bottom: 5px;
-}
-.addProject input {
-  position: relative;
-  height: 33px;
-  width: 100%;
-  outline: none;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(182, 182, 182);
-  border-radius: 6px;
-  padding: 0 15px;
-  margin-right: 50px;
 }
 
 .selectApproval {

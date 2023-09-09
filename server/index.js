@@ -19,7 +19,7 @@ const db = mysql.createPool({
 
 app.get("/api/insert", (req, res) => {
   const sqlSelect = "SELECT * FROM cruddatabase.projects;";
-  db.query(sqlSelect, (err, result) => {
+  db.query(sqlSelect, (err, result) => { 
     res.send(result)
   })
 });
@@ -159,7 +159,7 @@ app.get("/api/employee/project/:id", (req, res) => {
 
 app.put("/update", (req, res) => {
   const projectId = req.body.projectTd;
-  const employeId = req.body.employid;
+  const employeId = req.body.employid; 
   db.query(
     "UPDATE projects SET employeId = ? WHERE projectId = ?",
     [employeId, projectId],
@@ -194,9 +194,7 @@ app.put("/update/user", (req, res) => {
 app.put("/actionplan/update", (req, res) => {
   const projectId = req.body.projectId;
   const approval = req.body.approval;
-  // console.log(id)
-  // console.log(employid)
-  // console.log(approval)
+
   db.query(
     "UPDATE actionplan SET approval = ? WHERE projectId = ?",
     [approval, projectId],

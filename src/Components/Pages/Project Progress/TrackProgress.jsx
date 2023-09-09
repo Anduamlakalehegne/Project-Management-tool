@@ -50,7 +50,6 @@ const TrackProgress = () => {
     };
 
 
-
     return (
         <>
             <SideBar path="/project" title="Manager Dashboard" sendDataToParent={handleDataFromChild} />
@@ -139,7 +138,7 @@ const TrackProgress = () => {
                                             <p>DOCUMENTAION :</p>
                                             <div>
                                                 <Button
-                                                    style={{ margin: '15px 0px', width: '116%' }}
+                                                    style={{ margin: '15px 0px', width: '100%' }}
                                                     variant="contained"
                                                     color={items.documentation === "Not Started" ? "error" : items.documentation === "Completed" ? "success" : 'primary'}
                                                     size="small">
@@ -160,7 +159,7 @@ const TrackProgress = () => {
                                             <p>DATABASE DESIGN :</p>
                                             <div>
                                                 <Button
-                                                    style={{ margin: '15px 0px', width: '116%' }}
+                                                    style={{ margin: '15px 0px', width: '100%' }}
                                                     variant="contained"
                                                     color={items.databas === "Not Started" ? "error" : items.databas === "Completed" ? "success" : 'primary'}
                                                     size="small">
@@ -181,7 +180,7 @@ const TrackProgress = () => {
                                             <p>CODE IMPLMENTATION :</p>
                                             <div>
                                                 <Button
-                                                    style={{ margin: '15px 0px', width: '116%' }}
+                                                    style={{ margin: '15px 0px', width: '100%' }}
                                                     variant="contained"
                                                     color={items.code === "Not Started" ? "error" : items.code === "Completed" ? "success" : 'primary'}
                                                     size="small">
@@ -202,7 +201,7 @@ const TrackProgress = () => {
                                             <p>TEST :</p>
                                             <div>
                                                 <Button
-                                                    style={{ margin: '15px 0px', width: '116%' }}
+                                                    style={{ margin: '15px 0px', width: '100%' }}
                                                     variant="contained"
                                                     color={items.test === "Not Started" ? "error" : items.test === "Completed" ? "success" : 'primary'}
                                                     size="small">
@@ -223,7 +222,7 @@ const TrackProgress = () => {
                                             <p>DEPLOY :</p>
                                             <div>
                                                 <Button
-                                                    style={{ margin: '15px 0px', width: '116%' }}
+                                                    style={{ margin: '15px 0px', width: '100%' }}
                                                     variant="contained"
                                                     color={items.deploy === "Not Started" ? "error" : items.deploy === "Completed" ? "success" : 'primary'}
                                                     size="small">

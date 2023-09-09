@@ -7,20 +7,13 @@ import withReactContent from "sweetalert2-react-content";
 import 'animate.css';
 
 const Header = ({ width }) => {
-  const [loginID, setLoginID] = useState(null);
 
-  const [state, setState] = useState(false);
-  const [action, setAction] = useState(true);
+  const user = JSON.parse(localStorage.getItem("user2"));
+  const id = user.data[0].id;
+  const role = user.data[0].role;
+  const email = user.data[0].employeeEmail;
+  const name = user.data[0].employeeName;
 
-  const [toggles, setToggle] = useState("All_navigation");
-  const showMenu = () => {
-    setToggle("All_navigation active");
-    setAction(!action)
-  }
-  const hideMenu = () => {
-    setToggle("All_navigation");
-    setAction(!action)
-  }
 
   const toggle = () => {
     const MySwal = withReactContent(Swal);
@@ -75,14 +68,7 @@ const Header = ({ width }) => {
       }
     })
 
-
   }
-  const user = JSON.parse(localStorage.getItem("user2"));
-  const id = user.data[0].id;
-  const role = user.data[0].role;
-  const email = user.data[0].employeeEmail;
-  const name = user.data[0].employeeName;
-
 
   return (
     <>

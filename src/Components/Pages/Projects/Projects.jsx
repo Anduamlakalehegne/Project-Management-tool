@@ -504,11 +504,9 @@ const Projects = () => {
     };
 
 
-
     return (
 
         <div>
-
 
             <SideBar path="/project" title="Manager Dashboard" sendDataToParent={handleDataFromChild} />
 
@@ -530,8 +528,8 @@ const Projects = () => {
                                     borderColor: 'primary.light', '& .MuiDataGrid-cell:hover': { color: 'primary.main', },
                                 }}
                                 checkboxSelection
-                                rows={formattedData}
-                                columns={columns}
+                                rows={formattedData} 
+                                columns={columns} 
                                 components={{ Toolbar: GridToolbar }}
                             />
                         </div>
