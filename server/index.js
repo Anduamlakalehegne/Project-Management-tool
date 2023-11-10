@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const db = mysql.createPool({
   user: "root",
   host: "localhost",
-  password: "password",
-  database: "cruddatabase",
+  password: "password", 
+  database: "cruddatabase", 
 });
 
 // ----------------------------- manager ------------------------------
@@ -25,9 +25,9 @@ app.get("/api/insert", (req, res) => {
 });
 
 app.post("/api/insert", (req, res) => {
-  const projectName = req.body.projectName;
-  const projectId = req.body.projectId;
-  const startDate = req.body.startDate;
+  const projectName = req.body.projectName; 
+  const projectId = req.body.projectId; 
+  const startDate = req.body.startDate; 
   const endDate = req.body.endDate;
   const description = req.body.description;
 
@@ -116,10 +116,7 @@ app.post("/api/actionplan", (req, res) => {
   const deployEndDate = req.body.deployEndDate;
   const projectId = req.body.projectId;
   const employeeId = req.body.employeeId;
-  // console.log(projectStartDate)
-  // console.log(projectEndDate)
-  // console.log(projectId)
-  // console.log(employeeId)
+
   const sqlInsert = "INSERT INTO actionplan (projectStartDate, projectEndDate, documentationStartDate, documentationEndDate, databasStartDate, databasEndDate, codeStartDate, codeEndDate, testStartDate, testEndDate, deployStartDate, deployEndDate, projectId, employeeId) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   db.query(sqlInsert, [projectStartDate, projectEndDate, documentationStartDate, documentationEndDate, databasStartDate, databasEndDate, codeStartDate, codeEndDate, testStartDate, testEndDate, deployStartDate, deployEndDate, projectId, employeeId], (err, result) => {
     if (result) {

@@ -96,13 +96,13 @@ function SideBar(props) {
                   <BsFillFileZipFill></BsFillFileZipFill>
                 </span>
                 <p style={{ display: isOpen ? "none" : "block", transition: '0.5s' }}>Project</p>
-              </li>
-            </Link>
+              </li> 
+            </Link> 
 
             : ''}
 
 
-          <li>
+          <li> 
             <span>
               <AiFillSetting></AiFillSetting>
             </span>
